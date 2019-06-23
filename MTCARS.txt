@@ -1,0 +1,52 @@
+str(mtcars)
+attach(mtcars)
+show(mtcars)
+
+display structure and summary of data set mtcars and write down names of categorical variable
+display horsepower and displacement of records whose no of cylinder is 6
+
+
+summary(mtcars)
+names(mtcars)
+hp(mtcars)
+mtcars[cyl>6,]
+mtcars[disp >6 & cyl>6,]
+
+HISTOGRAM:
+
+hist(mtcars$mpg, breaks=10, xlab = "miles per gallon", main = "histogram of miles per gallon of cars", xlim = range(10:35))
+
+plot(mtcars$mpg ~ as.factor(mtcars$am), mtcars, xlab = "transmission type", 
+     ylab = "miles per gallon", main = "histogram of mpg by transmission type")
+
+
+
+SCATTERPLOT:
+
+plot(wt, mpg, main = "scatterplot example", xlab = "car weight", ylab = "miles per gallon", pch = 19)
+
+abline(lm(mpg~wt), col = 'red')
+lines(lowess(wt,mpg), col = 'blue')
+
+
+PIE CHART:
+
+mtcarscarb = table(mtcars$carb)
+percentlabels = round(100*mtcarscarb/sum(mtcarscarb),1)
+pielabels = paste(percentlabels, "%",sep = "")
+pie(mtcarscarb, col = rainbow(length(mtcarscarb)), labels = pielabels, main = "pie chart for mtcars distribution of carburetors", cex = 0.8)
+legend("topright", c("carburetor-1","carburetor-2","carburetor-3","carburetor-4","carburetor-6","carburetor-8"), cex=0.6,fill = rainbow(length(mtcarscarb)))
+
+
+
+BARPLOT:
+
+mtcarsgear = table(mtcars$gear)
+barplot(mtcarsgear, main = "bar plot for mtcars gears", ylab = "frequency", xlab = "gear type")
+
+
+
+STACKED BARPLOT:
+
+gearcyl = table(mtcars$cyl, mtcars$gear)
+barplot(gearcyl, main = "stacked barplot for mtcars", xlab = "number of gears", ylab = "frequency", col = c("blue","green","orange"), legend = rownames(gearcyl))
